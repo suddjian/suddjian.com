@@ -4,6 +4,10 @@
       <meta name="description" content="David Aaron Suddjian is a professional web nerd, outdoors-person, and weird tech enthusiast. This is his website.">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <style>
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
+
         body, html {
           position: relative;
           margin: 0;
@@ -16,6 +20,10 @@
           position: fixed;
           width: 100vw;
           min-height: 100vh;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 0 1fr auto;
+          padding: 2vw 4vw;
         }
 
         .progimg {
@@ -58,14 +66,9 @@
           transition: none;
         }
 
-        nav {
-          margin-top: 2vw;
-          margin-left: 4vw;
-          font-size: calc(5vw + 20px);
-        }
-
         nav .item {
           margin-bottom: 0.5em;
+          font-size: calc(5vw + 20px);
         }
 
         nav a {
@@ -89,11 +92,10 @@
         }
 
         h1 {
+          display: inline-block;
           font-size: calc(0.4vw + 0.8rem);
-          position: absolute;
-          bottom: 2vw;
-          left: 4vw;
           padding: 0.1em 0.4em;
+          margin-top: 3em;
           background: #144090;
           color: #eeeeee;
           box-shadow: -2px 2px 2px rgba(0,0,0, 0.25)
@@ -103,10 +105,12 @@
     </head>
     <body>
 
-      <div id='tinybg' class="progimg"></div>
-      <div id='smallbg' class="progimg"></div>
-      <div id='optimizedbg' class="progimg"></div>
-      <div id='mainbg' class="progimg active"></div>
+      <div>
+        <div id='tinybg' class="progimg"></div>
+        <div id='smallbg' class="progimg"></div>
+        <div id='optimizedbg' class="progimg"></div>
+        <div id='mainbg' class="progimg active"></div>
+      </div>
       <nav>
         <div class="item">
           <a href="https://blog.suddjian.com">blog.</a>
@@ -115,7 +119,9 @@
           <a href="https://eventually.run">eventually.run</a>
         </div>
       </nav>
-      <h1>Website of David Aaron Suddjian.</h1>
+      <main>
+        <h1>Website of David Aaron Suddjian.</h1>
+      </main>
 
       <script>
         function loadImage(src) {
