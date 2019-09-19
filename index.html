@@ -64,9 +64,11 @@
           font-size: calc(5vw + 20px);
         }
 
-        nav a {
-          display: block;
+        nav .item {
           margin-bottom: 0.5em;
+        }
+
+        nav a {
           text-decoration: none;
           transition: text-shadow 0.3s;
           color: transparent;
@@ -108,8 +110,12 @@
       <div id='optimizedbg' class="progimg"></div>
       <div id='mainbg' class="progimg active"></div>
       <nav>
-        <a href="https://blog.suddjian.com">blog.</a>
-        <a href="https://eventually.run">eventually.run</a>
+        <div class="item">
+          <a href="https://blog.suddjian.com">blog.</a>
+        </div>
+        <div class="item">
+          <a href="https://eventually.run">eventually.run</a>
+        </div>
       </nav>
       <h1>Website of David Aaron Suddjian.</h1>
 
