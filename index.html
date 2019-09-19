@@ -9,22 +9,30 @@
           margin: 0;
           padding: 0;
           font-family: 'Cantata One', serif;
+          font-size: 14px;
+        }
+
+        body {
+          position: fixed;
+          width: 100vw;
+          min-height: 100vh;
         }
 
         .progimg {
-          opacity: 0;
-        }
-
-        .progimg.active {
           content: "";
           position: fixed;
           /* go just over the edge to avoid a border effect */
-          left: -2vw;
-          top: -2vh;
-          width: 104vw;
-          height: 104vh;
-          opacity: 1;
+          left: -2%;
+          top: -2%;
+          width: 104%;
+          height: 104%;
+          z-index: -100;
+          opacity: 0;
           transition: opacity 1s;
+        }
+
+        .progimg.active {
+          opacity: 1;
         }
 
         #mainbg {
@@ -51,11 +59,9 @@
         }
 
         nav {
-          position: fixed;
-          top: 2vw;
-          left: 4vw;
-          max-width: 2000px;
-          font-size: calc(4vw + 36px);
+          margin-top: 2vw;
+          margin-left: 4vw;
+          font-size: calc(5vw + 20px);
         }
 
         nav a {
@@ -81,19 +87,31 @@
           -webkit-text-stroke: calc(0.2px + 0.1vw) black;
           text-shadow: -5px 4px 5px rgba(0, 0, 0, 0.25);
         }
+
+        h1 {
+          font-size: calc(0.4vw + 0.8rem);
+          position: absolute;
+          bottom: 2vw;
+          right: 4vw;
+          padding: 0.1em 0.4em;
+          background: #1a1a1a;
+          color: #eeeeee;
+          box-shadow: -2px 2px 2px rgba(0,0,0, 0.25)
+        }
       </style>
       <link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
     </head>
-
     <body>
+
       <div id='tinybg' class="progimg"></div>
       <div id='smallbg' class="progimg"></div>
       <div id='optimizedbg' class="progimg"></div>
-      <div id='mainbg' class="progimg"></div>
+      <div id='mainbg' class="progimg active"></div>
       <nav>
         <a href="https://blog.suddjian.com">blog.</a>
         <a href="https://eventually.run">eventually.run</a>
       </nav>
+      <h1>Website of David Aaron Suddjian.</h1>
 
       <script>
         function loadImage(src) {
