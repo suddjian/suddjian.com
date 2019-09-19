@@ -3,14 +3,121 @@
       <title>David Aaron Suddjian | The Website</title>
       <meta name="description" content="David Aaron Suddjian is a professional web nerd, outdoors-person, and weird tech enthusiast. This is his website.">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <style>
+        body, html {
+          position: relative;
+          margin: 0;
+          padding: 0;
+          font-family: 'Cantata One', serif;
+        }
+
+        .progimg {
+          opacity: 0;
+        }
+
+        .progimg.active {
+          content: "";
+          position: fixed;
+          /* go just over the edge to avoid a border effect */
+          left: -2vw;
+          top: -2vh;
+          width: 104vw;
+          height: 104vh;
+          opacity: 1;
+          transition: opacity 1s;
+        }
+
+        #mainbg {
+          background: url('/me0_main.jpg');
+          background-size: cover;
+        }
+
+        #optimizedbg {
+          background: url('/me0_optimized.jpg');
+          background-size: cover;
+        }
+
+        #smallbg {
+          background: url('/me0_small_opt.jpg');
+          background-size: cover;
+          filter: blur(5px);
+        }
+
+        #tinybg {
+          background: url('/me0_teeny.jpg');
+          background-size: cover;
+          filter: blur(20px);
+          transition: none;
+        }
+
+        nav {
+          position: fixed;
+          top: 2vw;
+          left: 4vw;
+          max-width: 2000px;
+          font-size: calc(4vw + 36px);
+        }
+
+        nav a {
+          display: block;
+          margin-bottom: 0.5em;
+          text-decoration: none;
+          transition: text-shadow 0.3s;
+          color: transparent;
+
+          background: white;
+          background-clip: text;
+          -webkit-background-clip: text;
+          text-stroke: calc(0.2px + 0.1vw) #144090;
+          -webkit-text-stroke: calc(0.2px + 0.1vw) #144090;
+          text-shadow: -3px 2px 5px rgba(0, 0, 0, 0.25);
+        }
+
+        nav a:hover, a:active {
+          background: linear-gradient(20deg, rgb(228, 20, 126), #f36545, #f19453);
+          background-clip: text;
+          -webkit-background-clip: text;
+          text-stroke: calc(0.2px + 0.1vw) black;
+          -webkit-text-stroke: calc(0.2px + 0.1vw) black;
+          text-shadow: -5px 4px 5px rgba(0, 0, 0, 0.25);
+        }
+      </style>
       <link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="./main.css" />
     </head>
+
     <body>
+      <div id='tinybg' class="progimg"></div>
+      <div id='smallbg' class="progimg"></div>
+      <div id='optimizedbg' class="progimg"></div>
+      <div id='mainbg' class="progimg"></div>
       <nav>
         <a href="https://blog.suddjian.com">blog.</a>
         <a href="https://eventually.run">eventually.run</a>
       </nav>
+
+      <script>
+        function loadImage(src) {
+          return new Promise(yay => {
+            var img = new Image()
+            img.onload = yay
+            img.src = src
+          })
+        }
+
+        const images = [
+          { id: 'tinybg', src: '/me0_teeny.jpg' },
+          { id: 'smallbg', src: '/me0_small_opt.jpg' },
+          { id: 'optimizedbg', src: '/me0_optimized.jpg' },
+          { id: 'mainbg', src: '/me0_main.jpg' },
+        ]
+
+        images.forEach(img => {
+          loadImage(img.src)
+          .then(() => {
+            document.getElementById(img.id).classList.add('active')
+          })
+        })
+      </script>
     </body>
   </html>
   
