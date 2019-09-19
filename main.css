@@ -8,9 +8,15 @@ body, html {
 }
 
 a {
-  color: black;
+  background: linear-gradient(20deg, black, black);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: none;
   text-decoration: none;
-  -webkit-text-stroke: calc(0.2px + 0.1vw) rgba(46, 102, 228, 0.75);;
+  transition: background 1s;
+  text-stroke: calc(0.2px + 0.1vw) rgba(46, 102, 228, 0.75);
+  -webkit-text-stroke: calc(0.2px + 0.1vw) rgba(46, 102, 228, 0.75);
 }
 
 a:hover, a:active {
@@ -19,6 +25,8 @@ a:hover, a:active {
   -webkit-background-clip: text;
   color: transparent;
   text-shadow: none;
+  transition: background 1s;
+  text-stroke: calc(0.2px + 0.1vw) black;
   -webkit-text-stroke: calc(0.2px + 0.1vw) black;
 }
 
@@ -31,4 +39,25 @@ nav {
 
 .navitem {
   margin-bottom: 0.5em;
+}
+
+.navitem g,
+.navitem text,
+.navitem .gradient,
+.navitem .stroke {
+  width: 100%;
+  height: 100%;
+}
+
+.navitem .gradient {
+  fill: url(#linkGradient);
+  stroke: transparent;
+  stroke-width: 0.05vw;
+  clip-path: url(#textClip);
+}
+
+.navitem .stroke {
+  fill: none;
+  stroke: black;
+  stroke-width: 0.15vw;
 }
