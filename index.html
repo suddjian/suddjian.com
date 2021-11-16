@@ -1,148 +1,195 @@
 <html>
-    <head>
-      <title>David Aaron Suddjian - The Website</title>
-      <meta name="description" content="Hi, I'm David Aaron Suddjian: software engineer, outdoors-person, and weird tech enthusiast. I write sometimes. This is my website.">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <style>
-        *, *::before, *::after {
-          box-sizing: border-box;
-        }
+  <!--
+    Hey reader! if you're a fellow nerdy Suddjian,
+    and would like a fancy @suddjian.com email address
+    or even a .suddjian.com subdomain,
+    get in touch and I can hook you up!
 
-        body, html {
-          position: relative;
-          margin: 0;
-          padding: 0;
-          font-family: 'Cantata One', serif;
-          font-size: 14px;
-        }
+    If you're not a Suddjian, get lost.
+    This source code is for Suddjians only.
+  -->
+  <head>
+    <title>David Aaron Suddjian - The Website</title>
+    <meta name="description" content="Hi, I'm David Aaron Suddjian: software engineer, outdoors-person, and weird tech enthusiast. I write sometimes. This is my website.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
 
-        body {
-          min-height: 100%;
-          display: grid;
-          grid-template-columns: 1fr;
-          grid-template-rows: 0 1fr auto;
-          padding: 2vw 4vw;
-        }
+      body, html {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        font-family: 'Cantata One', serif;
+        font-size: 14px;
+      }
 
-        .progimg {
-          content: "";
-          position: fixed;
-          /* go just over the edge to avoid a border effect */
-          left: -2%;
-          top: -2%;
-          width: 104%;
-          height: 104%;
-          z-index: -100;
-          opacity: 0;
-          transition: opacity 1s;
-        }
+      body {
+        min-height: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0 1fr auto;
+        padding: 2vw 4vw;
+      }
 
-        .progimg.active {
-          opacity: 1;
-        }
+      nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+      }
 
-        #mainbg {
-          background: url('/me0_main.jpg');
-          background-size: cover;
-        }
+      nav a {
+        color: inherit;
+      }
 
-        #optimizedbg {
-          background: url('/me0_optimized.jpg');
-          background-size: cover;
-        }
+      nav a:hover, a:active {
+        color: transparent;
+        background: linear-gradient(20deg, rgb(181, 74, 240), #f34545, #f2b960);
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
 
-        #smallbg {
-          background: url('/me0_small_opt.jpg');
-          background-size: cover;
-          filter: blur(5px);
-        }
+      main {
+        margin-top: 3em;
+        background: rgba(22, 23, 26, 0.75);
+        color: #eeeeee;
+        box-shadow: -2px 2px 2px rgba(0,0,0, 0.25);
+        text-shadow: -5px 4px 5px rgba(0, 0, 0, 0.25);
+        max-width: 300px;
+        padding: 0.5em;
+      }
 
-        #tinybg {
-          background: url('/me0_teeny.jpg');
-          background-size: cover;
-          filter: blur(20px);
-          transition: none;
-        }
+      h1, h2 {
+        margin: 0;
+        font-size: calc(0.4vw + 0.8rem);
+      }
 
-        nav .item {
-          margin-bottom: 0.5em;
-          font-size: calc(5vw + 20px);
-        }
+      .inline {
+        display:inline;
+      }
 
-        nav a {
-          text-decoration: none;
-          color: transparent;
+      pre {
+        background: rgb(159, 159, 159);
+        color: #152d4d;
+        border-radius: 2px;
+        padding: 2px;
+        text-shadow: none;
+      }
 
-          background: white;
-          background-clip: text;
-          -webkit-background-clip: text;
-          text-stroke: calc(0.5px + 0.1vw) #144090;
-          -webkit-text-stroke: calc(0.2px + 0.1vw) #144090;
-          text-shadow: -5px 4px 5px rgba(0, 0, 0, 0.25);
-        }
+      /*
+      ========== Progressively Loading Images For Awesome High Res Without Causing Lag ==========
+      */
 
-        nav a:hover, a:active {
-          background: linear-gradient(20deg, rgb(228, 20, 126), #f36545, #f19453);
-          background-clip: text;
-          -webkit-background-clip: text;
-          text-stroke: calc(0.2px + 0.1vw) black;
-          -webkit-text-stroke: calc(0.2px + 0.1vw) black;
-        }
+      .progimg {
+        content: "";
+        position: fixed;
+        /* go just over the edge to avoid a border effect */
+        left: -2%;
+        top: -2%;
+        width: 104%;
+        height: 104%;
+        z-index: -100;
+        opacity: 0;
+        transition: opacity 1s;
+      }
 
-        h1 {
-          display: inline-block;
-          font-size: calc(0.4vw + 0.8rem);
-          padding: 0.1em 0.4em;
-          margin-top: 3em;
-          background: #144090;
-          color: #eeeeee;
-          box-shadow: -2px 2px 2px rgba(0,0,0, 0.25)
-        }
-      </style>
-      <link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
-    </head>
-    <body>
+      .progimg.active {
+        opacity: 1;
+      }
 
-      <div>
-        <div id='tinybg' class="progimg"></div>
-        <div id='smallbg' class="progimg"></div>
-        <div id='optimizedbg' class="progimg"></div>
-        <div id='mainbg' class="progimg active"></div>
-      </div>
+      #mainbg {
+        background: url('/me0_main.jpg');
+        background-size: cover;
+      }
+
+      #optimizedbg {
+        background: url('/me0_optimized.jpg');
+        background-size: cover;
+      }
+
+      #smallbg {
+        background: url('/me0_small_opt.jpg');
+        background-size: cover;
+        filter: blur(5px);
+      }
+
+      #tinybg {
+        background: url('/me0_teeny.jpg');
+        background-size: cover;
+        filter: blur(20px);
+        transition: none;
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Cantata+One" rel="stylesheet">
+  </head>
+  <body>
+
+    <div>
+      <div id='tinybg' class="progimg"></div>
+      <div id='smallbg' class="progimg"></div>
+      <div id='optimizedbg' class="progimg"></div>
+      <div id='mainbg' class="progimg active"></div>
+    </div>
+
+    <main>
+      <h1>Hi, I'm Aaron.</h1>
+      <p>
+        I make stuff with code for fun and for money.
+        Some of it gets dumped on this website.
+        Maybe you'll enjoy it I don't know.
+      </p>
+      <p>
+        There aren't a lot of Suddjians out there,
+        and I think I'm the only one of us doing software development,
+        so I feel like the suddjian.com domain is rightfully mine to slap a billboard sized mediocre-ai-enhanced photo of myself onto.
+        I've earned that at least, damn it.
+      </p>
+      <p>
+        I've stopped using social media because it's all run by soulless corporate ghouls who want to feed you to their pet algorithms,
+        so for now this is the closest thing to a profile page you're gonna get.
+      </p>
       <nav>
+        <h2>Contents:</h2>
         <div class="item">
-          <a href="https://blog.suddjian.com">blog.</a>
+          <a href="https://blog.suddjian.com">A bunch of writing that I've decided to publish for some reason.</a>
         </div>
         <div class="item">
-          <a href="https://eventually.run">eventually.run</a>
+          <a href="https://eventually.run">
+            eventually.run, a cloud service for scheduled code execution
+            but it isn't built yet because I got a real job and don't have the time or the energy.
+          </a>
+        </div>
+        <div class="item">
+          <a href="/win-button/">
+            I made this funny little game in a few minutes while learning how to use Godot. I think Godot is cool.
+          </a>
         </div>
       </nav>
-      <main>
-        <h1>Website of David Aaron Suddjian.</h1>
-      </main>
+    </main>
 
-      <script>
-        function loadImage(src) {
-          return new Promise(yay => {
-            var img = new Image()
-            img.onload = yay
-            img.src = src
-          })
-        }
-
-        const images = [
-          { id: 'tinybg', src: '/me0_teeny.jpg' },
-          { id: 'smallbg', src: '/me0_small_opt.jpg' },
-          { id: 'optimizedbg', src: '/me0_optimized.jpg' },
-          { id: 'mainbg', src: '/me0_main.jpg' },
-        ]
-
-        images.forEach(img => {
-          loadImage(img.src)
-          .then(() => {
-            document.getElementById(img.id).classList.add('active')
-          })
+    <script>
+      function loadImage(src) {
+        return new Promise(yay => {
+          var img = new Image()
+          img.onload = yay
+          img.src = src
         })
-      </script>
-    </body>
-  </html>
+      }
+
+      const images = [
+        { id: 'tinybg', src: '/me0_teeny.jpg' },
+        { id: 'smallbg', src: '/me0_small_opt.jpg' },
+        { id: 'optimizedbg', src: '/me0_optimized.jpg' },
+        { id: 'mainbg', src: '/me0_main.jpg' },
+      ]
+
+      images.forEach(img => {
+        loadImage(img.src)
+        .then(() => {
+          document.getElementById(img.id).classList.add('active')
+        })
+      })
+    </script>
+  </body>
+</html>
