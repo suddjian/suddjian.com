@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>R.O.O.T.S.</title>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        /* https://css-tricks.com/snippets/css/system-font-stack/ */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+      }
+
+      #canvas {
+        border: 1px solid black;
+      }
+
+      .storeItem {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .storeItem .blurb {
+        margin-left: 16px;
+      }
+
+      .storeItem img {
+        width: 64px;
+        image-rendering: crisp-edges;
+      }
+
+      .storeItem button {
+        padding: 0px;
+      }
+
+      .statContainer {
+        padding: 16px;
+        border: 1px solid black;
+      }
+
+      #game {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      #game:not(.started) .storeItem:not(#ovum) {
+        display: none;
+      }
+
+      #game.started #ovum {
+        display: none;
+      }
+
+      section {
+        margin: 16px;
+        /* max-width: calc((32px * 16) + 8px); */
+      }
+
+      #ui {
+        max-width: 520px;
+      }
+
+      em {
+        /* em stands for emoji now, I decided */
+        font-size: 0.8rem;
+        vertical-align: 10%;
+      }
+
+      .stat {
+        font-weight: normal;
+        font-size: 1rem;
+        vertical-align: top;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="game">
+      <section id="screen">
+        <canvas id="canvas" width="520" height="520"></canvas>
+      </section>
+
+      <section id="ui">
+        <p class="statContainer">
+          Energy: <span id="energy"></span><em>⚡</em>
+        </p>
+
+        <div class="storeItem" id="ovum">
+          <div>
+            <button type="button" class="select">
+              <img src="img/ovum.png" />
+            </button>
+          </div>
+          <div class="blurb">
+            <h3>
+              Your Base
+            </h3>
+            <p>
+              A great sealed city of the future, defiant against the void. Named
+              Ovum by her people.
+            </p>
+            <p>
+              The city is solidly reinforced and won't go down easily.
+            </p>
+          </div>
+        </div>
+
+        <div class="storeItem" id="plant">
+          <div>
+            <button type="button" class="select">
+              <img src="img/plant.png" />
+            </button>
+          </div>
+          <div class="blurb">
+            <h3>
+              Power Plant
+              <span class="stat">
+                [cost: <span class="cost"></span><em>⚡</em>]
+              </span>
+            </h3>
+            <p>
+              An essential piece of infrastructure. Harvest energy from the
+              environment.
+            </p>
+          </div>
+        </div>
+
+        <div class="storeItem" id="wall">
+          <div>
+            <button type="button" class="select">
+              <img src="img/wall.png" />
+            </button>
+          </div>
+          <div class="blurb">
+            <h3>
+              Wall
+              <span class="stat">
+                [cost: <span class="cost"></span><em>⚡</em>]
+              </span>
+            </h3>
+            <p>
+              Do your part to stop the spread by blocking the spread with a big
+              strong wall.
+            </p>
+          </div>
+        </div>
+
+        <div class="storeItem" id="boom">
+          <div>
+            <button type="button" class="select">
+              <img src="img/boom.png" />
+            </button>
+          </div>
+          <div class="blurb">
+            <h3>
+              Bomb
+              <span class="stat">
+                [cost: <span class="cost"></span><em>⚡</em>]
+              </span>
+            </h3>
+            <p>Blow stuff up. Use with caution.</p>
+          </div>
+        </div>
+
+        <h3>Cheat Codes</h3>
+        <button id="spawnSlime">Bring on the slime!</button>
+        <button id="cheatEnergy">Unlimited power!</button>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
