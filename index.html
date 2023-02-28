@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <!--
-    Hey reader! if you're a fellow nerdy Suddjian,
-    and would like a shiny [you]@suddjian.com email address
-    or a .suddjian.com subdomain,
-    get in touch and I can hook you up!
+    Hey reader!
 
-    And since you're clearly the curious type:
+    Since you're clearly the curious type,
+    you may care to know that this site is hand-written HTML:
     https://github.com/suddjian/suddjian.com
+
+    There aren't a lot of Suddjians out there,
+    and I think I'm the only one of us that makes software.
+    I can certainly say with confidence that I am at least the first.
+    So I feel like the suddjian.com domain is rightfully mine
+    to deface with a mediocrally ai-processed photo of myself.
+
+    If somehow you're a fellow Suddjian,
+    and would like a shiny [you]@suddjian.com email address or a subdomain,
+    I can hook you up! Get in touch with aaron @   this domain.
   -->
   <head>
-    <title>David Aaron Suddjian - The Website</title>
-    <meta name="description" content="Hi, I'm David Aaron Suddjian: software engineer, outdoors-enjoyer, and weird computer enthusiast. I write sometimes. This is my website.">
+    <title>David Aaron Suddjian</title>
+    <meta name="description" content="I'm David Aaron Suddjian, I make games and other software and this is the main page of my website.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       *, *::before, *::after {
@@ -23,7 +31,7 @@
         margin: 0;
         padding: 0;
         font-family: 'Cantata One', serif;
-        font-size: 14px;
+        font-size: 16px;
       }
 
       body {
@@ -34,14 +42,38 @@
         padding: 2vw 4vw;
       }
 
-      nav {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
+      p {
+        margin: 0;
+      }
+
+      h1, h2, h3 {
+        margin: 0;
+      }
+
+      .t1 {
+        font-size: 24px;
+      }
+
+      .t2 {
+        font-size: 14px;
+        font-weight: normal;
+        font-style: italic;
+        text-transform: uppercase;
+      }
+
+      .item:not(:first-child) {
+        margin-top: 1rem;
       }
 
       nav a {
         color: inherit;
+        text-decoration: none;
+        display: block;
+        border: 1px solid transparent;
+        border-left-color: #eeeeee;
+        transition: border-color 0.2s;
+        padding: 4px;
+        margin: -4px 0;
       }
 
       nav a:hover, a:active {
@@ -49,21 +81,21 @@
         background: linear-gradient(20deg, rgb(181, 74, 240), #f34545, #f2b960);
         background-clip: text;
         -webkit-background-clip: text;
+        border-color: #eeeeee;
       }
 
-      main {
+      section {
         margin-top: 3em;
-        background: rgba(22, 23, 26, 0.75);
+        background: rgba(22, 23, 26, 0.8);
         color: #eeeeee;
         box-shadow: -2px 2px 2px rgba(0,0,0, 0.25);
         text-shadow: -5px 4px 5px rgba(0, 0, 0, 0.25);
         max-width: 300px;
-        padding: 0.5em;
+        padding: 16px 12px;
       }
 
-      h1, h2 {
-        margin: 0;
-        font-size: calc(0.4vw + 0.8rem);
+      nav .t2 {
+        margin-left: 6px;
       }
 
       .inline {
@@ -80,6 +112,7 @@
 
       /*
       ========== Progressively Loading Images For Awesome High Res Without Awkward Waiting ==========
+                 (I should really package this up as a tool)
       */
 
       .progimg {
@@ -100,23 +133,23 @@
       }
 
       #mainbg {
-        background: url('/me0_main.jpg');
+        background: url('me0_main.jpg');
         background-size: cover;
       }
 
       #optimizedbg {
-        background: url('/me0_optimized.jpg');
+        background: url('me0_optimized.jpg');
         background-size: cover;
       }
 
       #smallbg {
-        background: url('/me0_small_opt.jpg');
+        background: url('me0_small_opt.jpg');
         background-size: cover;
         filter: blur(5px);
       }
 
       #tinybg {
-        background: url('/me0_teeny.jpg');
+        background: url('me0_teeny.jpg');
         background-size: cover;
         filter: blur(20px);
         transition: none;
@@ -133,49 +166,51 @@
       <div id='mainbg' class="progimg active"></div>
     </div>
 
-    <main>
-      <h1>Hi, I'm Aaron.</h1>
-      <p>
-        I write computer codes for fun and for money.
-        Some of it ends up on this website.
-        Maybe you'll find it entertaining, I don't know.
+    <section>
+      <h1 class="t1">I'm Aaron Suddjian</h1>
+      <p class="item">
+        I do funky stuff with computers.
+        I also write, draw, adventure, and grow my own food.
+        You can find some of my work here.
       </p>
-      <p>
-        There aren't a lot of Suddjians out there,
-        and I think I'm the only one of us that makes software.
-        So I feel like the suddjian.com domain is rightfully mine to deface with a mediocrally ai-processed photo of myself.
-      </p>
-      <p>
-        I don't use social media (it's literally designed to be bad for you!)
-        <br>
-        Consider this site my web presence and profile page.
-      </p>
+      <!-- <hr class="item"> -->
+    </section>
+
+    <section>
       <nav>
-        <h2>Check out my stuff:</h2>
+        <h2 class="t2 item">Games:</h2>
         <div class="item">
-          <a href="https://blog.suddjian.com">A bunch of writing that I've decided to publish for some reason.</a>
+          <a href="ggj23/">
+            R.O.O.T.S. A game made in a week for Global Game Jam 2023.
+          </a>
+        </div>
+        <div class="item">
+          <a href="blob-game/0-1/">
+            An unfinished game where you jump around as a lil blob guy.
+          </a>
+        </div>
+        <div class="item">
+          <a href="ten-minute-game/">
+            A funny little "game" I made as a 10 minute challenge learning Godot.
+          </a>
+        </div>
+        <!-- <hr class="item"> -->
+        <h2 class="t2 item">Other Stuff:</h2>
+        <div class="item">
+          <a href="https://blog.suddjian.com">My poorly-maintained blog thing that needs a redesign.</a>
         </div>
         <div class="item">
           <a href="https://instahug.me">instahug.me, for when someone you know needs a hug but you are forced to be apart.</a>
         </div>
-        <div class="item">
+        <!-- <div class="item">
           <a href="https://eventually.run">
             eventually.run, a cloud service for scheduled code execution
             that I haven't built yet because I got a real job and don't have the time or the energy.
           </a>
-        </div>
-        <div class="item">
-          <a href="/ten-minute-game/">
-            Check out this funny little game I made in a few minutes while learning how to use Godot.
-          </a>
-        </div>
-        <div class="item">
-          <a href="/blob-game/0-1/">
-            And this blob game that I'm sort of working on here and there, also in Godot.
-          </a>
-        </div>
+        </div> -->
       </nav>
-    </main>
+    </section>
+
 
     <script>
       function loadImage(src) {
@@ -187,10 +222,10 @@
       }
 
       const images = [
-        { id: 'tinybg', src: '/me0_teeny.jpg' },
-        { id: 'smallbg', src: '/me0_small_opt.jpg' },
-        { id: 'optimizedbg', src: '/me0_optimized.jpg' },
-        { id: 'mainbg', src: '/me0_main.jpg' },
+        { id: 'tinybg', src: 'me0_teeny.jpg' },
+        { id: 'smallbg', src: 'me0_small_opt.jpg' },
+        { id: 'optimizedbg', src: 'me0_optimized.jpg' },
+        { id: 'mainbg', src: 'me0_main.jpg' },
       ]
 
       images.forEach(img => {
