@@ -30,37 +30,5 @@
     <h2>Doom Metal</h2>
     <iframe style="border: 0; width: 250px; height: 250px;" src="https://bandcamp.com/EmbeddedPlayer/album=139488673/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/" seamless><a href="https://pallbearer.bandcamp.com/album/sorrow-and-extinction-2">Sorrow And Extinction by Pallbearer</a></iframe>
     
-
-    <script>
-      function showTrackList(btn) {
-        const id = btn.getAttribute("data-id");
-        const iframe = document.getElementById(id);
-        const newSrc = iframe.src.replace("tracklist=false/", "");
-        iframe.src = newSrc;
-        iframe.style.height = iframe.getAttribute("data-expanded-height") || "300px";
-        iframe.setAttribute("data-tracklist", "show");
-        btn.innerText = "Hide track list";
-      }
-      function hideTrackList(btn) {
-        const id = btn.getAttribute("data-id");
-        const iframe = document.getElementById(id);
-        const newSrc = iframe.src + "tracklist=false/";
-        iframe.src = newSrc;
-        iframe.style.height = "120px";
-        iframe.setAttribute("data-tracklist", "hide");
-        btn.innerText = "Show track list";
-      }
-      function toggleTrackList(btn) {
-        const id = btn.getAttribute("data-id");
-        const iframe = document.getElementById(id);
-        if (iframe.getAttribute("data-tracklist") === "show") {
-          console.log("hide")
-          hideTrackList(btn);
-        } else {
-          console.log("show")
-          showTrackList(btn);
-        }
-      }
-    </script>
   </body>
 </html>
