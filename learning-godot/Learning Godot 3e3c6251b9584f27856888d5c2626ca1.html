@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Learning Godot</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3e3c6251-b958-4f27-8568-88d5c2626ca1" class="page sans"><header><img class="page-cover-image" src="capture_2022_12_13.png" style="object-position:center 17.659999999999997%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="icon.png"/></div><h1 class="page-title">Learning Godot</h1><p class="page-description"></p></header><div class="page-body"><hr id="4fe8d393-2ac6-4e8c-b70d-87eb5f086858"/><div id="52465799-ac6b-4f26-8156-395258a8f8a6" class="column-list"><div id="bb12735e-8b2c-4181-af48-626f4d943d29" style="width:43.75%" class="column"><h1 id="e1d4689c-ba7f-47c8-8b3d-4cba84324bcb" class="">Contents</h1><nav id="f3cea121-c59a-49c6-849a-56453e97639e" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e1d4689c-ba7f-47c8-8b3d-4cba84324bcb">Contents</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#437d9ae6-dc8a-43c2-892d-468c0534e1c9">Questions That Need Answering</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#21925c8a-b0d5-4aaa-bfe4-c864a006f77b">Scripting Tricks and Traps</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#171894ff-a04f-460c-9369-6feae0c6d04f">Trick: Use Type Inference</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a8ab00bf-359c-4b25-a038-7076dd2b4e45">Trick: Add Assertions</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a1406c10-e688-4130-ba36-997c78d9d5c1">Trap: Reference <code>setget</code> Properties Using <code>self.</code></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#353809fa-546a-4402-a46f-eae8ca1d5e86">Trap: Don’t have a function <code>await</code> anything that can outlive its node.</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#49a7a3c4-6f20-4587-a73c-d82bbe37c2d7">Calling down, signalling up</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1718ec49-0714-80f3-a74b-dd2024be2790">Trick: Unique Node Names</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ec027052-a541-48ec-96d8-0f4920b66bf3">Trick: Global Signals</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c77afb64-c230-4767-a631-46337cfc136c">Trick: Referencing classes/enums from other scripts</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c9957f3f-0c01-4888-82f3-50c457ed9744">What can I use {feature} for?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b67279da-167d-4028-8e1e-70bf7335f79c"><code>class_name</code></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8336371b-d162-4e1a-9ab0-5f56cf5d849a"><code>preload</code></a></div></nav><p id="f3f67db3-545b-4bb6-8d67-109913281ba7" class="">
+</p></div><div id="17574d0f-04e0-4946-8ccc-c02e0f8ff17c" style="width:56.25%" class="column"><h1 id="437d9ae6-dc8a-43c2-892d-468c0534e1c9" class="">Questions That Need Answering</h1><ul id="3dd3f6f8-a3ac-4752-bb9a-32579dbbdab7" class="toggle"><li><details open=""><summary><mark class="highlight-blue">When to use signals vs method calls?</mark></summary><ul id="110d9ab9-d6bd-4388-beb5-e85596b90724" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">signals can multicast and don’t need to know their targets</li></ul><ul id="45327904-df70-46b1-83c4-191d78d81517" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">I can follow direct calls fairly easily with go-to-definition, when navigating a codebase.</li></ul><ul id="079c9c84-0a25-4d10-a597-a8771717ce7f" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">signals need to be connected and disconnected</li></ul><ul id="1718ec49-0714-8004-987a-f04142f3d04e" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">Signals are good for passing control up the tree, methods are good for passing control down the tree.</li></ul></details></li></ul><ul id="4bc02b83-e76e-4b5a-8462-8b89ff51d01f" class="toggle"><li><details open=""><summary><mark class="highlight-blue">How to effectively compose nodes/scripts?</mark></summary><ul id="3c9d216c-3c1a-481a-9c3a-462a3e6b9b34" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">I have identified some “species” of node:<ul id="290ec638-3572-4d03-a0d0-02e1454577a0" class="bulleted-list"><li style="list-style-type:circle">Display</li></ul><ul id="32afb64d-4531-4c5c-9b9b-ce286e54d82a" class="bulleted-list"><li style="list-style-type:circle">Data</li></ul><ul id="bf3e1fcd-011a-46d4-8130-fee571fdde5f" class="bulleted-list"><li style="list-style-type:circle">Behavior</li></ul><ul id="5540b24b-2339-4258-8f4e-8e843ef9d128" class="bulleted-list"><li style="list-style-type:circle">Manager / Container (same thing?)</li></ul></li></ul><ul id="00593f80-c999-43dd-b4e5-e3cbaf90e485" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">Inheritance is used heavily in the base nodes<ul id="b59ae405-9e96-45f8-8f1f-ba72f3e16abb" class="bulleted-list"><li style="list-style-type:circle">2d/3d</li></ul><ul id="026db85a-b3c2-4d8b-8e12-db97331b5c25" class="bulleted-list"><li style="list-style-type:circle">control node hierarchy seems to be data, then behavior, then display</li></ul></li></ul><ul id="da133505-8c35-40b4-9164-c1f124af6598" class="block-color-teal bulleted-list"><li style="list-style-type:disc">It is useful to put display nodes underneath behavior nodes.</li></ul><ul id="1718ec49-0714-8060-8078-f7a12bcd55d6" class="block-color-teal bulleted-list"><li style="list-style-type:disc">Data should go in a Resource, not a Node, whenever possible.</li></ul></details></li></ul><ul id="955465b9-d2ac-448c-aa50-bd1c227ec0e4" class="toggle"><li><details open=""><summary><mark class="highlight-blue">How to parameterize a scene?</mark></summary><ul id="3158a581-6940-4138-abc3-6536a405a5b2" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">In-editor parameterization vs in-script parameterization?</li></ul><ul id="e3d22761-653a-4911-a5ae-61b76bcc07e8" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">link signals sent from nested nodes?</li></ul><ul id="a2096402-a962-4675-b691-acd1a70f400f" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">set exported vars of nested nodes in editor?</li></ul><ul id="62e1f445-5d2a-4784-a6f1-ed0a9117362d" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">reference nodes outside a scene?</li></ul><ul id="40e273b7-4738-4323-9857-7cef879838ad" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">export a <code>NodePath</code> var, <code>@&quot;MyNode&quot;</code> that can be set in-editor</li></ul><ul id="ea7abf11-c8de-4321-ba99-7c5ef5701e03" class="block-color-teal bulleted-list"><li style="list-style-type:disc">a scene should not know/expect much about the context in which it is used. Instead it can expose methods which are called, or signals which are connected, by the outside context.</li></ul><ul id="f79372bc-96ec-47f6-a939-14a153346d41" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">but it also seems like ideally parents shouldn’t know/care too much about their children scenes’ implementation details. Expose a reasonable API</li></ul><ul id="9790f123-dabf-4d37-b161-b1a9a627c3a0" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">“parameterize” a scene by adding extra children to it in its instantiated context?</li></ul></details></li></ul><ul id="0489cef0-857b-401c-8e7f-4589a1459ea4" class="toggle"><li><details open=""><summary><mark class="highlight-blue">How to update multiple nodes when a relevant variable changes elsewhere?</mark></summary><ul id="0d9072e0-f274-4bc8-8fb8-b914047b9a0a" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">connect relevant signals in _ready()</li></ul><ul id="5ab3c98d-acfc-4625-85d7-7404344a7519" class="block-color-yellow bulleted-list"><li style="list-style-type:disc">use global/singleton <strong>signal bus</strong> to connect separate systems</li></ul><ul id="1718ec49-0714-804b-8b1f-cfd7623bbb44" class="block-color-teal bulleted-list"><li style="list-style-type:disc">Use a shared Resource to hold the variables. Code can listen to variable changes in resources.</li></ul></details></li></ul><p id="a32a341b-8b8f-4731-a8d3-848ba780704a" class="">Often error messages have nothing to do with the actual problem, including showing up in a totally separate area.</p><p id="3f6d6cc8-f16e-4e60-bad0-a4d01715840d" class="">Where is the best place to init connections with other nodes?</p><p id="966f0408-a3ae-4b27-a9c6-a66377df6079" class="">
+</p></div></div><h1 id="21925c8a-b0d5-4aaa-bfe4-c864a006f77b" class="">Scripting Tricks and Traps</h1><h2 id="171894ff-a04f-460c-9369-6feae0c6d04f" class="">Trick: Use Type Inference</h2><p id="253a1ad1-8524-43a9-9067-726e0f01781c" class="">If you initialize a variable with <code>var x := 2.0</code> then its type will be inferred by the value to the right of the colon-equals operator.</p><h2 id="a8ab00bf-359c-4b25-a038-7076dd2b4e45" class="">Trick: Add Assertions</h2><p id="c7095e5f-523b-4d50-8c18-e9aeb8916b3f" class="">Whenever there is state that could conceivably be invalid! <code>assert()</code> will pause execution and open the debugger if the assertion fails. Track down <em>why</em> the code ended up in a bad state, and fix the code that caused it.</p><h2 id="a1406c10-e688-4130-ba36-997c78d9d5c1" class="">Trap: Reference <code>setget</code> Properties Using <code>self.</code></h2><p id="dc9abbb5-68a4-4943-8622-a583948705fb" class="">This is a big snag. <code>setget</code> properties can’t be referenced by the class they are defined in unless prefixed with <code>self.[property]</code>. I think this will be fixed in Godot 4. </p><h2 id="353809fa-546a-4402-a46f-eae8ca1d5e86" class="">Trap: Don’t have a function <code>await</code> anything that can outlive its node.</h2><p id="5ca42c61-2df9-4e45-90e0-9c68934629d5" class="">If a function resumes execution but the node it belongs to has been removed from the tree, the program will almost certainly crash.</p><p id="7f2ab653-cfa4-41f2-8b60-f7faa69c4672" class="">If you need a timer, add a timer node and reference that. The timer and the function reference will get cleaned up properly.</p><p id="2c7ea495-1ccb-4d56-a3a7-13386dde94fa" class="">If you need to wait for a different kind of signal, put the waiting code in a node that will not be removed.</p><h2 id="49a7a3c4-6f20-4587-a73c-d82bbe37c2d7" class="">Calling down, signalling up</h2><p id="99aa3dcf-6175-4bed-8b09-ac15df233813" class="">Saw this on godot reddit, seems reasonable. Nodes can know what children they have, but shouldn’t depend on parents/siblings.</p><p id="078e7d33-3095-40da-9958-e3c34f5cc146" class="">However, it does sometimes seem useful to depend on specific parents being present. But these cases should be kept as limited as possible, so that nodes can be re-used in other scenes or can be moved around in the tree without breaking everything. And sometimes the parent would be better as an autoload singleton.</p><h2 id="1718ec49-0714-80f3-a74b-dd2024be2790" class="">Trick: Unique Node Names</h2><p id="1718ec49-0714-80ee-a79b-d17f3e613c4c" class="">You can mark a node as unique, and reference it with <code>%MyNode</code> from anywhere in its scene. This is great because you can move nodes around without totally breaking your code.</p><h2 id="ec027052-a541-48ec-96d8-0f4920b66bf3" class="">Trick: Global Signals</h2><p id="6d643857-bd49-4654-b98f-f69ea0b507d6" class="">Signals which are used to connect two logically distinct systems should sometimes be declared in a global autoload singleton. The singleton will always be present in any scene, so will always be callable, and you can remove any of the systems that you’ve connected in this way without breaking the other systems.</p><p id="cc0bcec1-766f-475d-bd2f-12ed9bd0fd15" class="">It’s useful to separate things in this way so that if you ever want to set up a small scene for debugging or sketching, you won’t have to scaffold everything that is used in the main game.</p><h2 id="c77afb64-c230-4767-a631-46337cfc136c" class="">Trick: Referencing classes/enums from other scripts</h2><p id="1a5902bb-6dc3-4547-8453-f3ad97c32163" class="">Either:</p><ul id="82f36650-b056-45c5-adac-49466e1437f8" class="bulleted-list"><li style="list-style-type:disc">Put the class/enum in its own script and reference it via <code>preload</code></li></ul><ul id="18ad2366-6212-42ce-b96a-031961adb9b0" class="bulleted-list"><li style="list-style-type:disc">Give the script containing the class/enum a <code>class_name</code>. You can then reference the enum from anywhere with <code>NamedClass.SomeEnum.VALUE</code></li></ul><h1 id="c9957f3f-0c01-4888-82f3-50c457ed9744" class="">What can I use {feature} for?</h1><p id="031e3969-14a6-4856-857e-7a86702d1f3f" class="">Organized by feature.</p><h2 id="b67279da-167d-4028-8e1e-70bf7335f79c" class=""><code>class_name</code></h2><p id="6b38cceb-8049-4e59-8063-a3b29529b19f" class="">Useful when writing a script that should extend another script.</p><p id="b1e47df0-3f76-4fcb-9eaa-149c2cb45474" class="">Useful whenever a script will be referenced by another one.</p><h2 id="8336371b-d162-4e1a-9ab0-5f56cf5d849a" class=""><code>preload</code></h2><p id="2fd2d1f2-55ae-43f8-9134-7be6f9aa9e12" class="">Useful when a script depends entirely on another resource/script to be present by reference.</p><p id="8c0a4ec7-c56e-4529-a410-e32116dc5f66" class="">
+</p><p id="48976023-19e1-4322-90c0-545f19827306" class=""><a href="https://www.reddit.com/r/godot/comments/g0jq9m/signals_via_custom_resources_a_good_architecture/">https://www.reddit.com/r/godot/comments/g0jq9m/signals_via_custom_resources_a_good_architecture/</a></p><p id="f915cb5a-9318-438f-9bb5-66a292c3e4ae" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
